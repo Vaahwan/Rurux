@@ -15,7 +15,7 @@ const StudentProgress = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "https://rurux.vercel.app/admin/marks";
+    const api = "https://rurux.vercel.app/admin/progress";
     const email = localStorage.getItem('studentEmail');
 
     useEffect(() => {

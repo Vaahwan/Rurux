@@ -167,7 +167,8 @@ adminRoute.get('/progress',async(req,res)=>{
         }
 
         const {email} = req.body;
-        const marks = await marksModel.find({email}) || [];
+        const marks = await marksModel.find({studentEmail:email}) || [];
+        res.send(marks)
     }
     catch(error){
         res.status(500).send(error)
