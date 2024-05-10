@@ -49,6 +49,21 @@ adminRoute.post('/stream',async(req,res)=>{
     }
 })
 
+adminRoute.put('/stream',async(req,res)=>{
+    try{
+        console.log(req.body);
+        if(!req.body){
+            return res.send("there is no input");
+        }
+        const {_id,streamName} = req.body;
+        const updatedStream = await streamModel.updateOne({_id},{$set:{streamName:streamName}});
+        res.send(updatedStream);
+    }
+    catch(error){
+        res.status(500).send(error)
+    }
+})
+
 adminRoute.delete("/stream",async(req,res)=>{
     try{
         console.log(req.body);
@@ -95,6 +110,21 @@ adminRoute.post('/subject',async(req,res)=>{
     }
     catch(error){
         res.send(error);
+    }
+})
+
+adminRoute.put('/subject',async(req,res)=>{
+    try{
+        console.log(req.body);
+        if(!req.body){
+            return res.send("there is no input");
+        }
+        const {_id,streamName,subjectName} = req.body;
+        const updatedSubject = await subjectModel.updateOne({_id},{$set:{streamName:streamName,subjectName:subjectName}});
+        res.send(updatedSubject);
+    }
+    catch(error){
+        res.status(500).send(error)
     }
 })
 
@@ -151,12 +181,18 @@ adminRoute.post('/marks',async(req,res)=>{
     }
 })
 
-adminRoute.put('/marks',(req,res)=>{
+adminRoute.put('/marks',async(req,res)=>{
     try{
         console.log(req.body);
+        if(!req.body){
+            return res.send("there is no input");
+        }
+        const {_id,studentEmail,streamName,subjectName,marks} = req.body;
+        const updatedMarks = await marksModel.updateOne({_id},{$set:{studentEmail:studentEmail,streamName:streamName,subjectName:subjectName,marks:marks}});
+        res.send(updatedMarks);
     }
     catch(error){
-        res.status(500).send(error);
+        res.status(500).send(error)
     }
 })
 

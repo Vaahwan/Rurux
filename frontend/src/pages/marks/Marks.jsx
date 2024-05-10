@@ -17,8 +17,9 @@ const Marks = () => {
     const [marksData, setMarksData] = useState([]);
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
+    const [toupdate,setToUpdate] = useState({});
 
-    const api = "https://rurux.vercel.app/admin/marks";
+    const api = "http://localhost:8000/admin/marks";
 
     useEffect(() => {
         getMarks();
@@ -70,11 +71,33 @@ const Marks = () => {
     }
 
     const handleModal = (elem)=>{
+        setToUpdate(elem)
         setModalOpen(true)
     }
 
-    const handleEdit = (elem)=>{
-        console.log("update function needs to be done")
+    const handleEdit = ()=>{
+        if (studentEmail === "" || streamName === "" || subjectName==="" || marks=="") {
+            setNameErr(true)
+        }
+        else {
+            try {
+                console.log(toupdate)
+                console.log("new marks for", studentEmail)
+                axios.put(api,{
+                    _id : toupdate._id,
+                    studentEmail : studentEmail,
+                    streamName : streamName,
+                    subjectName : subjectName,
+                    marks : marks
+                }).then(()=>{
+                    setUpdate(!update)
+                    setModalOpen(false);
+                })
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
     }
 
     return (
