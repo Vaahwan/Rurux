@@ -6,3 +6,8 @@ This is a university management website made by following technologies
 #### Node
 #### Express
 #### MongoDB
+
+Please login as admin by following credentials
+#### name : admin
+#### email : admin@university.com
+#### password : Admin123
