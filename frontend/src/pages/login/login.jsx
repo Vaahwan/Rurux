@@ -19,7 +19,7 @@ const Login = () => {
     const validEmail = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
     const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$');
    
-    const api = "http://localhost:8000/student/login";
+    const api = "https://rurux.vercel.app/student/login";
 
     const handleClick = () => setShow(!show)
 

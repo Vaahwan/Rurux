@@ -15,7 +15,7 @@ const Streams = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "http://localhost:8000/admin/stream";
+    const api = "https://rurux.vercel.app/admin/stream";
 
     useEffect(() => {
         getStreams();

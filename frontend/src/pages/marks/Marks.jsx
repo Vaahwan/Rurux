@@ -18,7 +18,7 @@ const Marks = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "http://localhost:8000/admin/marks";
+    const api = "https://rurux.vercel.app/admin/marks";
 
     useEffect(() => {
         getMarks();
@@ -87,7 +87,7 @@ const Marks = () => {
                 {nameErr && <p style={{ color: 'red' }}>Your stream name is invalid</p>}
                 <Input className="input" placeholder='Enter Subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
                 {nameErr && <p style={{ color: 'red' }}>Your subject name is invalid</p>}
-                <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
+                <Input className="input" placeholder='Enter number' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
                 {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
 
                 <Button bg='var(--primary-color)' color='white' size='lg' mt='4' mb='4' pr='14' pl='14' _hover={{

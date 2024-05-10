@@ -12,6 +12,7 @@ import Marks from './pages/marks/Marks'
 import AllStudents from './pages/allStudents/AllStudents'
 import StudentProgress from './pages/studentProgress/StudentProgress'
 import StudentProfile from './pages/studentProfile/StudentProfile'
+import Home from './pages/home/Home'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,6 +27,7 @@ function App() {
         <Route path='/marks' element={<Marks/>} />
         <Route path='allstudents' element={<AllStudents/>} />
       </Route>
+      <Route path='/' element={<Home/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='studentprogress' element={<StudentProgress/>} />
       <Route path='studentprofile' element={<StudentProfile/>} />

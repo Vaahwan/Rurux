@@ -16,7 +16,7 @@ const Subject = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "http://localhost:8000/admin/subject";
+    const api = "https://rurux.vercel.app/admin/subject";
 
     useEffect(() => {
         getSubject();

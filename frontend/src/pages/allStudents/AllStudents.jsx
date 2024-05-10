@@ -15,7 +15,7 @@ const AllStudents = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "http://localhost:8000/admin/showStudents";
+    const api = "https://rurux.vercel.app/admin/showStudents";
 
     useEffect(() => {
         getAllStudents();
