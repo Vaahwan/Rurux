@@ -23,11 +23,14 @@ const StudentProgress = () => {
     }, [update])
 
     const getStudentProgress = async () => {
+        console.log(email)
         const response = await axios.get(api,{
             email:email
+        }).then((res)=>{
+            console.log(res)
+            setStudentData(res.data);
         });
-        console.log(response.data);
-        setStudentData(response.data)
+        
     }
 
     const handleSubmit = async () => {

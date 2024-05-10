@@ -160,6 +160,21 @@ adminRoute.get('/marks',async(req,res)=>{
     }
 })
 
+adminRoute.get('/progress',async(req,res)=>{
+    try{
+        if(!req.body){
+            return res.send("there is no input")
+        }
+
+        const {email} = req.body;
+        const marks = await marksModel.find({email}) || [];
+    }
+    catch(error){
+        res.status(500).send(error)
+    }
+})
+
+
 adminRoute.post('/marks',async(req,res)=>{
     try{
         console.log(req.body);
@@ -195,6 +210,7 @@ adminRoute.put('/marks',async(req,res)=>{
         res.status(500).send(error)
     }
 })
+
 
 adminRoute.delete("/marks",async(req,res)=>{
     try{
