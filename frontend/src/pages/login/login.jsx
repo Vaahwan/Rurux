@@ -19,7 +19,7 @@ const Login = () => {
     const validEmail = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
     const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$');
    
-
+    const api = "http://localhost:8000/student/login";
 
     const handleClick = () => setShow(!show)
 
@@ -27,10 +27,10 @@ const Login = () => {
         if (name === "") {
             setNameErr(true)
         }
-        else if (!validEmail.test(email)) {
+        else if (email==="") {
             setEmailErr(true);
         }
-        else if (!validPassword.test(password)) {
+        else if (password==="") {
             setPassErr(true);
         }
         else {
@@ -43,6 +43,15 @@ const Login = () => {
                 if(name=="admin" && email=="admin@university.com" && password=="Admin123"){
                     localStorage.setItem('adminLoggedIn',true)
                     console.log("hello admin");
+                }
+                else{
+                    await axios.post(api,{
+                        email : email,
+                        password : password
+                    }).then((res)=>{
+                        console.log(res);
+                        localStorage.setItem('studentEmail',(res.data.email))
+                    })
                 }
             }
             catch (error) {

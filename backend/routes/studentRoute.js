@@ -46,7 +46,7 @@ studentRoute.post('/login',async (req,res)=>{
             res.send("this student does not exist please signup first");
         }
         if(password==existingStudent.password){
-            res.send(existingStudent);
+            res.send("welcome student");
         }
         else{
             res.send("password is not correct");
@@ -74,6 +74,8 @@ studentRoute.get('/profile',async(req,res)=>{
         res.status(500).send(error);
     }
 })
+
+
 
 // one more route need to be made
 // that is my performance

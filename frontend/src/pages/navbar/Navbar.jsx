@@ -29,6 +29,15 @@ const Navbar = ()=>{
                 <NavLink to="/marks" className="home">
                     <span className="span"> MARKS</span>
                 </NavLink>
+                <NavLink to="/allstudents" className="home">
+                    <span className="span"> ALL STUDENTS</span>
+                </NavLink>
+                <NavLink to="/studentprofile" className="home">
+                    <span className="span"> STUDENT PROFILE</span>
+                </NavLink>
+                <NavLink to="/studentprogress" className="home">
+                    <span className="span"> STUDENT PROGRESS</span>
+                </NavLink>
                 <NavLink to="/login" className="home">
                     <span className="span"> LOGIN</span>
                 </NavLink>

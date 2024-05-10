@@ -117,6 +117,11 @@ adminRoute.delete("/subject",async(req,res)=>{
 
 adminRoute.get('/marks',async(req,res)=>{
     try{
+        if(req.body){
+            const {email} = req.body;
+            const marks = await marksModel.find({email}) || [];
+        }
+
         const marks = await marksModel.find() || [];
         res.send(marks)
     }

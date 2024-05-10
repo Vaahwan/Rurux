@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import './subject.css'
+import './marks.css'
 import { useState } from "react";
 import axios from 'axios'
 import { json, useNavigate } from 'react-router-dom'
@@ -8,36 +8,40 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { DeleteIcon, EditIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons'
 import Loader from "react-js-loader";
 
-const Subject = () => {
+const Marks = () => {
+    const [studentEmail,setStudentEmail] = useState("");
     const [streamName, setStreamName] = useState("")
-    const [subjectName, setSubjectName] = useState("")
+    const [subjectName,setSubjectName] = useState("");
+    const [marks,setMarks] = useState(0);
     const [nameErr, setNameErr] = useState(false);
-    const [subjectData, setSubjectData] = useState([]);
+    const [marksData, setMarksData] = useState([]);
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "http://localhost:8000/admin/subject";
+    const api = "http://localhost:8000/admin/marks";
 
     useEffect(() => {
-        getSubject();
+        getMarks();
     }, [update])
 
-    const getSubject = async () => {
+    const getMarks = async () => {
         const response = await axios.get(api);
         console.log(response.data);
-        setSubjectData(response.data)
+        setMarksData(response.data)
     }
 
     const handleSubmit = async () => {
-        if (streamName === "" || subjectName === "") {
+        if (studentEmail === "" || streamName === "" || subjectName==="" || marks=="") {
             setNameErr(true)
         }
         else {
             try {
-                console.log("new subject", name)
+                console.log("new marks for", studentEmail)
                 axios.post(api,{
+                    studentEmail : studentEmail,
                     streamName : streamName,
-                    subjectName : subjectName
+                    subjectName : subjectName,
+                    marks : marks
                 }).then(()=>{
                     setUpdate(!update)
                 })
@@ -53,7 +57,7 @@ const Subject = () => {
             console.log(elem._id)
             await axios.delete(api,{
                 data:{
-                    subjectId : elem._id
+                    marksId : elem._id
                 }
             }).then((res)=>{
                 console.log(res)
@@ -76,11 +80,16 @@ const Subject = () => {
     return (
         <div className="container">
             <div className="form-container">
-                <Heading mb={4} >Subject</Heading>
+                <Heading mb={4} >Marks</Heading>
+                <Input className="input" placeholder='Enter Student email' size='lg' onChange={(e) => { setStudentEmail(e.target.value); setNameErr(false) }} />
+                {nameErr && <p style={{ color: 'red' }}>Your email is invalid</p>}
                 <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
+                {nameErr && <p style={{ color: 'red' }}>Your stream name is invalid</p>}
+                <Input className="input" placeholder='Enter Subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
+                {nameErr && <p style={{ color: 'red' }}>Your subject name is invalid</p>}
+                <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
                 {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                <Input className="input" placeholder='Enter Subjecnamet name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
-                {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
+
                 <Button bg='var(--primary-color)' color='white' size='lg' mt='4' mb='4' pr='14' pl='14' _hover={{
                     background: "white",
                     color: "var(--primary-color)",
@@ -92,23 +101,27 @@ const Subject = () => {
             </div>
 
             <div className="table">
-                <Heading mb='10' >All the subject available</Heading>
+                <Heading mb='10' >All the marks available</Heading>
                 <TableContainer>
                     <Table variant='simple'>
                         <Thead>
                             <Tr>
+                                <Th>Student Email</Th>
                                 <Th>Stream Name</Th>
                                 <Th>Subject Name</Th>
+                                <Th>Marks</Th>
                                 {/* <Th>Edit/Delete</Th> */}
                             </Tr>
 
                         </Thead>
                         <Tbody>
                             {
-                                subjectData.map((elem, id, array) => {
+                                marksData.map((elem, id, array) => {
                                     return <Tr key={id}>
+                                        <Td>{elem.studentEmail}</Td>
                                         <Td>{elem.streamName}</Td>
                                         <Td>{elem.subjectName}</Td>
+                                        <Td>{elem.marks}</Td>
                                         <td onClick={() => { handleModal(elem) }} > <EditIcon /> </td>
                                         <td onClick={() => { handleDelete(elem) }} > <DeleteIcon /> </td>
                                     </Tr>
@@ -125,11 +138,15 @@ const Subject = () => {
                             <ModalCloseButton />
                             <ModalBody>
                                 <div className="form-container">
-                                    <Heading mb={4} >Edit Your Subject</Heading>
+                                    <Heading mb={4} >Edit Your Marks</Heading>
+                                    <Input className="input" placeholder='Enter Student email' size='lg' onChange={(e) => { setStudentEmail(e.target.value); setNameErr(false) }} />
+                                    {nameErr && <p style={{ color: 'red' }}>Your email is invalid</p>}
                                     <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                                    <Input className="input" placeholder='Enter Subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
+                                    <Input className="input" placeholder='Enter subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
+                                    <Input className="input" placeholder='Enter marks' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
+                                    {nameErr && <p style={{ color: 'red' }}>Your marks is invalid</p>}
                                 </div>
                             </ModalBody>
 
@@ -161,4 +178,4 @@ const Subject = () => {
     )
 }
 
-export default Subject
+export default Marks
