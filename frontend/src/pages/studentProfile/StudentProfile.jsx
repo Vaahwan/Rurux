@@ -77,7 +77,7 @@ const StudentProfile = () => {
     return (
         <div className="container">
             <div className="table">
-                <Heading mb='10' > Your Progress</Heading>
+                <Heading mb='10' > Your Profile</Heading>
                 <TableContainer>
                     <Table variant='simple'>
                         <Thead>

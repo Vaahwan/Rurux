@@ -13,6 +13,7 @@ import AllStudents from './pages/allStudents/AllStudents'
 import StudentProgress from './pages/studentProgress/StudentProgress'
 import StudentProfile from './pages/studentProfile/StudentProfile'
 import Home from './pages/home/Home'
+import Signup from './pages/signup/Signup'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,6 +30,7 @@ function App() {
       </Route>
       <Route path='/' element={<Home/>} />
       <Route path='/login' element={<Login/>} />
+      <Route path='/signup' element={<Signup/>} />
       <Route path='studentprogress' element={<StudentProgress/>} />
       <Route path='studentprofile' element={<StudentProfile/>} />
     </Routes>
