@@ -7,7 +7,7 @@
 ##### Express
 ##### MongoDB
 
-Please login as admin by following credentials
-#### name : admin
-#### email : admin@university.com
-#### password : Admin123
+### Please login as admin by following credentials
+##### name : admin
+##### email : admin@university.com
+##### password : Admin123
