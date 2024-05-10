@@ -18,7 +18,8 @@ const Signup = () => {
     const [wrongPass,setWrongPass] = useState(false);
     const validEmail = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
     const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$');
-   
+
+    const navigate = useNavigate();
     const api = "https://rurux.vercel.app/student/signup";
 
     const handleClick = () => setShow(!show)
@@ -47,6 +48,7 @@ const Signup = () => {
                 }).then((res)=>{
                     console.log(res);
                     localStorage.setItem('studentEmail',(res.data.email))
+                    navigate('/login')
                 })
                 
             }
