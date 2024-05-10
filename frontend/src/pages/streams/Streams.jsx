@@ -14,6 +14,7 @@ const Streams = () => {
     const [streamData, setStreamData] = useState([]);
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
+    const [toupdate,setToUpdate] = useState({})
 
     const api = "https://rurux.vercel.app/admin/stream";
 
@@ -46,6 +47,26 @@ const Streams = () => {
         }
     }
 
+    const handleEdit = async(elem)=>{
+        if(name===""){
+            setNameErr(true);
+        }
+        else{
+            try{
+                await axios.put(api,{
+                    _id : toupdate._id,
+                    streamName : name
+                }).then(()=>{
+                    setUpdate(!update)
+                    setModalOpen(false);
+                })
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+    }
+
     const handleDelete = async(elem)=>{
         try{
             console.log(elem._id)
@@ -65,11 +86,10 @@ const Streams = () => {
 
     const handleModal = (elem)=>{
         setModalOpen(true)
+        setToUpdate(elem)
     }
 
-    const handleEdit = (elem)=>{
-        console.log("update function needs to be done")
-    }
+    
 
     return (
         <div className="container">

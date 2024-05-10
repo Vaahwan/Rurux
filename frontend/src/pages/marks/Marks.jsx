@@ -19,7 +19,7 @@ const Marks = () => {
     const [modalOpen,setModalOpen] = useState(false)
     const [toupdate,setToUpdate] = useState({});
 
-    const api = "http://localhost:8000/admin/marks";
+    const api = "https://rurux.vercel.app/admin/marks";
 
     useEffect(() => {
         getMarks();
@@ -75,7 +75,7 @@ const Marks = () => {
         setModalOpen(true)
     }
 
-    const handleEdit = ()=>{
+    const handleEdit = async()=>{
         if (studentEmail === "" || streamName === "" || subjectName==="" || marks=="") {
             setNameErr(true)
         }
@@ -83,7 +83,7 @@ const Marks = () => {
             try {
                 console.log(toupdate)
                 console.log("new marks for", studentEmail)
-                axios.put(api,{
+                await axios.put(api,{
                     _id : toupdate._id,
                     studentEmail : studentEmail,
                     streamName : streamName,
