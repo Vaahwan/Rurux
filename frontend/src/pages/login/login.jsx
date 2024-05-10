@@ -52,7 +52,7 @@ const Login = () => {
                     }).then((res)=>{
                         console.log(res);
                         localStorage.setItem('studentEmail',(email))
-                        navigate('/studentprogress')
+                        navigate('/studentprofile')
                     })
                 }
             }

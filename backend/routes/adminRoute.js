@@ -160,7 +160,7 @@ adminRoute.get('/marks',async(req,res)=>{
     }
 })
 
-adminRoute.get('/progress',async(req,res)=>{
+adminRoute.post('/progress',async(req,res)=>{
     try{
         if(!req.body){
             return res.send("there is no input")

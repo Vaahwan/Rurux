@@ -15,21 +15,26 @@ const StudentProgress = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "https://rurux.vercel.app/admin/progress";
-    const email = localStorage.getItem('studentEmail');
+    const api = "http://localhost:8000/admin/progress";
+    
 
     useEffect(() => {
         getStudentProgress();
     }, [update])
 
     const getStudentProgress = async () => {
+        const email = localStorage.getItem('studentEmail');
         console.log(email)
-        const response = await axios.get(api,{
-            email:email
-        }).then((res)=>{
-            console.log(res)
-            setStudentData(res.data);
-        });
+        try{
+            await axios.post(api,{email}).then((res)=>{
+                console.log("this is res",res);
+                setStudentData(res.data)
+                // setUpdate(!update)
+            })
+        }
+        catch(error){
+            console.log(error)
+        }
         
     }
 

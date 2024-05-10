@@ -57,17 +57,14 @@ studentRoute.post('/login',async (req,res)=>{
     }
 })
 
-studentRoute.get('/profile',async(req,res)=>{
+studentRoute.post('/profile',async(req,res)=>{
     try{
         console.log(req.body);
         if (!req.body) {
             return res.status(400).send("Request body is empty or undefined.");
         }
         const {email} = req.body;
-        const existingStudent = await studentModel.findOne({email});
-        if(!existingStudent){
-            res.send("this student does not exist please signup first");
-        }
+        const existingStudent = await studentModel.findOne({email: email});
         res.send(existingStudent);
     }
     catch(error){

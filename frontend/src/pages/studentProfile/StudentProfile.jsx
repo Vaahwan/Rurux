@@ -15,7 +15,7 @@ const StudentProfile = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "https://rurux.vercel.app/admin/marks";
+    const api = "http://localhost:8000/student/profile";
     const email = localStorage.getItem('studentEmail');
 
     useEffect(() => {
@@ -23,11 +23,13 @@ const StudentProfile = () => {
     }, [update])
 
     const getStudentProgress = async () => {
-        const response = await axios.get(api,{
+        await axios.post(api,{
             email:email
-        });
-        console.log(response.data);
-        setStudentData(response.data)
+        }).then((res)=>{
+            console.log(res);
+            setStudentData(res.data)
+        })
+        
     }
 
     const handleSubmit = async () => {
@@ -83,15 +85,17 @@ const StudentProfile = () => {
                         <Thead>
                             <Tr>
                                 <Th>Student Email</Th>
-                                <Th>Stream Name</Th>
-                                <Th>Subject Name</Th>
-                                <Th>Marks</Th>
+                                <Th>Student Name</Th>
+                                {/* <Th>Subject Name</Th>
+                                <Th>Marks</Th> */}
                                 {/* <Th>Edit/Delete</Th> */}
                             </Tr>
 
                         </Thead>
                         <Tbody>
-                            {
+                            <Td>{studentData.email}</Td>
+                            <Td>{studentData.name}</Td>
+                            {/* {
                                 studentData.map((elem, id, array) => {
                                     return <Tr key={id}>
                                         <Td>{elem.studentEmail}</Td>
@@ -101,7 +105,7 @@ const StudentProfile = () => {
                                         
                                     </Tr>
                                 })
-                            }
+                            } */}
                         </Tbody>
                     </Table>
                 </TableContainer>
