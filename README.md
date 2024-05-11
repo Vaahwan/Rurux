@@ -7,6 +7,9 @@
 ##### Express
 ##### MongoDB
 
+##### starting time : may 9 5pm
+##### completion time : may 11 12.30pm
+
 ### Please login as admin by following credentials
 ##### name : admin
 ##### email : admin@university.com
@@ -19,3 +22,4 @@
 
 ### pleaes have a look on the deployed link of this project
 ##### https://aahwanrurux.netlify.app/
+
