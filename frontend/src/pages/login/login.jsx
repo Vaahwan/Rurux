@@ -6,7 +6,7 @@ import {json, useNavigate} from 'react-router-dom'
 import { Heading } from '@chakra-ui/react'
 import { Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react'
 
-const Login = () => {
+const Login = ({isloggedIn,setIsloggedIn}) => {
     const [show, setShow] = useState(false);
     const [name, setName] = useState("")
     const [email, setEmail] = useState();
@@ -43,7 +43,9 @@ const Login = () => {
                 })
                 if(name=="admin" && email=="admin@university.com" && password=="Admin123"){
                     localStorage.setItem('adminLoggedIn',true)
+                    setIsloggedIn(true);
                     console.log("hello admin");
+                    navigate('/')
                 }
                 else{
                     await axios.post(api,{
@@ -52,6 +54,7 @@ const Login = () => {
                     }).then((res)=>{
                         console.log(res);
                         localStorage.setItem('studentEmail',(email))
+                        setIsloggedIn(true);
                         navigate('/studentprofile')
                     })
                 }
@@ -66,7 +69,7 @@ const Login = () => {
         <div className="container">
             <div className="form-container">
                 <Heading mb={4} >Login</Heading>
-                <Input className="input" placeholder='Enter Your Name' size='lg' onChange={(e) => { setName(e.target.value); setNameErr(false) }} />
+                <Input className="input"  placeholder='Enter Your Name' size='lg' onChange={(e) => { setName(e.target.value); setNameErr(false) }} />
                 {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
                 <Input className="input" type='email' placeholder='Enter Your Email' size='lg' onChange={(e) => { setEmail(e.target.value); setEmailErr(false) }} />
                 {emailErr && <p style={{ color: 'red' }}>Your email is invalid</p>}

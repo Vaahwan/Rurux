@@ -3,12 +3,17 @@ import './navbar.css'
 import {useNavigate,NavLink} from 'react-router-dom'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 
-const Navbar = ()=>{
+const Navbar = ({isloggedIn,setIsloggedIn})=>{
     const navigate = useNavigate();
 
     const handleSignout = ()=>{
         // localStorage.removeItem('jwtToken');
         navigate('/')
+    }
+
+    const handleLogout = ()=>{
+        setIsloggedIn(false);
+        localStorage.clear();
     }
 
     return(
@@ -39,7 +44,8 @@ const Navbar = ()=>{
                     <span className="span"> STUDENT PROGRESS</span>
                 </NavLink>
                 <NavLink to="/login" className="home">
-                    <span className="span"> LOGIN</span>
+                    {isloggedIn? <span onClick={handleLogout} className="span">LOGOUT</span> : <span className="span"> LOGIN</span>}
+                    
                 </NavLink>
                 <NavLink to="/signup" className="home">
                     <span className="span"> SIGNUP</span>

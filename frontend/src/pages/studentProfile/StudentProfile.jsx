@@ -15,7 +15,7 @@ const StudentProfile = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "http://localhost:8000/student/profile";
+    const api = "https://rurux-aahwans-projects.vercel.app/student/profile";
     const email = localStorage.getItem('studentEmail');
 
     useEffect(() => {

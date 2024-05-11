@@ -17,10 +17,11 @@ import Signup from './pages/signup/Signup'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isloggedIn,setIsloggedIn] = useState(false);
 
   return (
     <>
-    <Navbar/>
+    <Navbar isloggedIn={isloggedIn} setIsloggedIn={setIsloggedIn} />
     <Routes>
       <Route element={<AuthRequired/>} >
         <Route path='/streams' element={<Streams/>} />
@@ -29,7 +30,7 @@ function App() {
         <Route path='allstudents' element={<AllStudents/>} />
       </Route>
       <Route path='/' element={<Home/>} />
-      <Route path='/login' element={<Login/>} />
+      <Route path='/login' element={<Login isloggedIn={isloggedIn} setIsloggedIn={setIsloggedIn} />} />
       <Route path='/signup' element={<Signup/>} />
       <Route path='studentprogress' element={<StudentProgress/>} />
       <Route path='studentprofile' element={<StudentProfile/>} />

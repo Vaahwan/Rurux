@@ -15,7 +15,7 @@ const StudentProgress = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
 
-    const api = "http://localhost:8000/admin/progress";
+    const api = "https://rurux-aahwans-projects.vercel.app/admin/progress";
     
 
     useEffect(() => {
