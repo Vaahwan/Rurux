@@ -18,6 +18,10 @@ const Marks = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
     const [toupdate,setToUpdate] = useState({});
+    const [editStudentEmail,setEditStudetEmail] = useState("");
+    const [editStream,setEditStream] = useState("");
+    const [editSubject,setEditSubject] = useState("");
+    const [editMarks,setEditMarks] = useState("");
 
     const api = "https://rurux.vercel.app/admin/marks";
 
@@ -27,7 +31,6 @@ const Marks = () => {
 
     const getMarks = async () => {
         const response = await axios.get(api);
-        console.log(response.data);
         setMarksData(response.data)
     }
 
@@ -37,7 +40,6 @@ const Marks = () => {
         }
         else {
             try {
-                console.log("new marks for", studentEmail)
                 axios.post(api,{
                     studentEmail : studentEmail,
                     streamName : streamName,
@@ -55,13 +57,11 @@ const Marks = () => {
 
     const handleDelete = async(elem)=>{
         try{
-            console.log(elem._id)
             await axios.delete(api,{
                 data:{
                     marksId : elem._id
                 }
             }).then((res)=>{
-                console.log(res)
                 setUpdate(!update);
             })
         }
@@ -71,6 +71,10 @@ const Marks = () => {
     }
 
     const handleModal = (elem)=>{
+        setEditStudetEmail(elem.studentEmail)
+        setEditStream(elem.streamName)
+        setEditSubject(elem.subjectName)
+        setEditMarks(elem.marks)
         setToUpdate(elem)
         setModalOpen(true)
     }
@@ -81,8 +85,6 @@ const Marks = () => {
         }
         else {
             try {
-                console.log(toupdate)
-                console.log("new marks for", studentEmail)
                 await axios.put(api,{
                     _id : toupdate._id,
                     studentEmail : studentEmail,
@@ -162,13 +164,13 @@ const Marks = () => {
                             <ModalBody>
                                 <div className="form-container">
                                     <Heading mb={4} >Edit Your Marks</Heading>
-                                    <Input className="input" placeholder='Enter Student email' size='lg' onChange={(e) => { setStudentEmail(e.target.value); setNameErr(false) }} />
+                                    <Input value={editStudentEmail} className="input" placeholder='Enter Student email' size='lg' onChange={(e) => { setStudentEmail(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your email is invalid</p>}
-                                    <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
+                                    <Input value={editStream} className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                                    <Input className="input" placeholder='Enter subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
+                                    <Input value={editSubject} className="input" placeholder='Enter subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                                    <Input className="input" placeholder='Enter marks' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
+                                    <Input value={editMarks} className="input" placeholder='Enter marks' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your marks is invalid</p>}
                                 </div>
                             </ModalBody>

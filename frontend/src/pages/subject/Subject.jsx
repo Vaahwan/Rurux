@@ -16,6 +16,8 @@ const Subject = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
     const [toupdate,setToUpdate] = useState({});
+    const [editStream,setEditStream] = useState("");
+    const [editSubject,setEditSubject] = useState("");
 
     const api = "https://rurux.vercel.app/admin/subject";
 
@@ -25,7 +27,6 @@ const Subject = () => {
 
     const getSubject = async () => {
         const response = await axios.get(api);
-        console.log(response.data);
         setSubjectData(response.data)
     }
 
@@ -35,7 +36,6 @@ const Subject = () => {
         }
         else {
             try {
-                console.log("new subject", name)
                 axios.post(api,{
                     streamName : streamName,
                     subjectName : subjectName
@@ -72,13 +72,11 @@ const Subject = () => {
 
     const handleDelete = async(elem)=>{
         try{
-            console.log(elem._id)
             await axios.delete(api,{
                 data:{
                     subjectId : elem._id
                 }
             }).then((res)=>{
-                console.log(res)
                 setUpdate(!update);
             })
         }
@@ -88,6 +86,8 @@ const Subject = () => {
     }
 
     const handleModal = (elem)=>{
+        setEditStream(elem.streamName);
+        setEditSubject(elem.subjectName);
         setModalOpen(true)
         setToUpdate(elem)
     }
@@ -147,9 +147,9 @@ const Subject = () => {
                             <ModalBody>
                                 <div className="form-container">
                                     <Heading mb={4} >Edit Your Subject</Heading>
-                                    <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
+                                    <Input value={editStream} className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                                    <Input className="input" placeholder='Enter Subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
+                                    <Input value={editSubject} className="input" placeholder='Enter Subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
                                 </div>
                             </ModalBody>
@@ -182,4 +182,4 @@ const Subject = () => {
     )
 }
 
-export default Subject
+export default Subject;

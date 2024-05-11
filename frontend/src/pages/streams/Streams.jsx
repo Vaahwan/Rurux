@@ -15,6 +15,7 @@ const Streams = () => {
     const [update,setUpdate] = useState(true);
     const [modalOpen,setModalOpen] = useState(false)
     const [toupdate,setToUpdate] = useState({})
+    const [editStream,setEditStream] = useState("");
 
     const api = "https://rurux.vercel.app/admin/stream";
 
@@ -24,7 +25,6 @@ const Streams = () => {
 
     const getStreams = async () => {
         const response = await axios.get(api);
-        console.log(response.data);
         setStreamData(response.data)
     }
 
@@ -34,7 +34,6 @@ const Streams = () => {
         }
         else {
             try {
-                console.log("new streams", name)
                 axios.post(api,{
                     streamName : name
                 }).then(()=>{
@@ -69,13 +68,11 @@ const Streams = () => {
 
     const handleDelete = async(elem)=>{
         try{
-            console.log(elem._id)
             await axios.delete(api,{
                 data:{
                     streamId : elem._id
                 }
             }).then((res)=>{
-                console.log(res)
                 setUpdate(!update);
             })
         }
@@ -85,6 +82,7 @@ const Streams = () => {
     }
 
     const handleModal = (elem)=>{
+        setEditStream(elem.streamName);
         setModalOpen(true)
         setToUpdate(elem)
     }
@@ -141,7 +139,7 @@ const Streams = () => {
                             <ModalBody>
                                 <div className="form-container">
                                     <Heading mb={4} >Edit Your Stream</Heading>
-                                    <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setName(e.target.value); setNameErr(false) }} />
+                                    <Input value={editStream} className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
                                 </div>
                             </ModalBody>
