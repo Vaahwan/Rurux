@@ -139,7 +139,7 @@ const Streams = () => {
                             <ModalBody>
                                 <div className="form-container">
                                     <Heading mb={4} >Edit Your Stream</Heading>
-                                    <Input value={editStream} className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setName(e.target.value); setNameErr(false) }} />
+                                    <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
                                 </div>
                             </ModalBody>

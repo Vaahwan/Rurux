@@ -164,13 +164,13 @@ const Marks = () => {
                             <ModalBody>
                                 <div className="form-container">
                                     <Heading mb={4} >Edit Your Marks</Heading>
-                                    <Input value={editStudentEmail} className="input" placeholder='Enter Student email' size='lg' onChange={(e) => { setStudentEmail(e.target.value); setNameErr(false) }} />
+                                    <Input className="input" placeholder='Enter Student email' size='lg' onChange={(e) => { setStudentEmail(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your email is invalid</p>}
-                                    <Input value={editStream} className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
+                                    <Input className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                                    <Input value={editSubject} className="input" placeholder='Enter subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
+                                    <Input className="input" placeholder='Enter subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                                    <Input value={editMarks} className="input" placeholder='Enter marks' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
+                                    <Input className="input" placeholder='Enter marks' size='lg' onChange={(e) => { setMarks(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your marks is invalid</p>}
                                 </div>
                             </ModalBody>

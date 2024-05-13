@@ -72,11 +72,13 @@ const Subject = () => {
 
     const handleDelete = async(elem)=>{
         try{
+            console.log(elem._id)
             await axios.delete(api,{
                 data:{
                     subjectId : elem._id
                 }
             }).then((res)=>{
+                console.log(res)
                 setUpdate(!update);
             })
         }
@@ -147,9 +149,9 @@ const Subject = () => {
                             <ModalBody>
                                 <div className="form-container">
                                     <Heading mb={4} >Edit Your Subject</Heading>
-                                    <Input value={editStream} className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
+                                    <Input  className="input" placeholder='Enter Stream name' size='lg' onChange={(e) => { setStreamName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
-                                    <Input value={editSubject} className="input" placeholder='Enter Subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
+                                    <Input  className="input" placeholder='Enter Subject name' size='lg' onChange={(e) => { setSubjectName(e.target.value); setNameErr(false) }} />
                                     {nameErr && <p style={{ color: 'red' }}>Your name is invalid</p>}
                                 </div>
                             </ModalBody>

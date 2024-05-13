@@ -7,6 +7,8 @@ import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, H
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons'
 import Loader from "react-js-loader";
+import Pichart from "../../components/pichart/Pichart";
+import ChartComp from "../../components/pichart/ChartComp";
 
 const StudentProgress = () => {
     const [name, setName] = useState("")
@@ -27,8 +29,8 @@ const StudentProgress = () => {
         console.log(email)
         try{
             await axios.post(api,{email}).then((res)=>{
-                console.log("this is res",res);
                 setStudentData(res.data)
+                
                 // setUpdate(!update)
             })
         }
@@ -114,6 +116,7 @@ const StudentProgress = () => {
                     </Table>
                 </TableContainer>
             </div>
+            <ChartComp studentData={studentData} />
         </div>
     )
 }
