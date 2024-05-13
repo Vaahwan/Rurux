@@ -9,6 +9,7 @@
 
 ##### starting time : may 9 5pm
 ##### completion time : may 11 12.30pm
+##### chart completion time : may 13 8.10pm
 
 ### Please login as admin by following credentials
 ##### name : admin
